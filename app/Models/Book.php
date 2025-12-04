@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    protected $primaryKey = "book_id";
     public $incrementing = false;
-    protected $primaryKey = "best_book_id";
     public $fillable = [
         "book_id",
         "goodreads_book_id",

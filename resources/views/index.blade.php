@@ -11,11 +11,13 @@
         <span>
             <button><a href="\create">Adicione novo livro</a></button>
         </span>
-        @foreach ($books as $book) {
-            <li></li>
-        }
-            
-        @endforeach
+        <!--
+            @foreach ($books as $book) {
+                <li></li>
+                }
+                
+                @endforeach
+        ->
     </div>
 </body>
 </html>/
