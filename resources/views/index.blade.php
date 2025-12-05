@@ -7,17 +7,16 @@
     <title>Biblioteca virtual - FFLCH</title>
 </head>
 <body>
+    <header>
+        <h1>Biblioteca virtual da FFLCH</h1>
+    </header>
     <div>
         <span>
             <button><a href="\create">Adicione novo livro</a></button>
         </span>
-        <!--
-            @foreach ($books as $book) {
-                <li></li>
-                }
-                
-                @endforeach
-        ->
+        @foreach ($books as $book)
+            <li>Nº ISBN:{{ $book->isbn }}, Título: {{$book->title}}</li>
+        @endforeach
     </div>
 </body>
 </html>/

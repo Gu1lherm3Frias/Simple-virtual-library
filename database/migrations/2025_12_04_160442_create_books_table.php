@@ -18,12 +18,12 @@ return new class extends Migration
             $table->integer("best_book_id");
             $table->integer("work_id");
             $table->integer("books_count");
-            $table->string("isbn")->nullable();
-            $table->string("isbn13")->nullable();
-            $table->string("authors");
+            $table->bigInteger("isbn")->nullable();
+            $table->bigInteger("isbn13")->nullable();
+            $table->text("authors");
             $table->integer("original_publication_year")->nullable();
             $table->string("original_title")->nullable();
-            $table->string("title");
+            $table->string("title")->nullable();
             $table->tinyText("language_code")->nullable();
             $table->float("average_rating");
             $table->integer("ratings_count");

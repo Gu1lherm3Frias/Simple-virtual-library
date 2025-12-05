@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BookController
 {
     public function index() {
         return view('index', [
-            'books' => Book::all()
+            'books' => Book::get()
         ]);
     }
 
@@ -18,6 +19,7 @@ class BookController
 
     public function store(Request $request) {
         Book::create([
+            'book_id' => $request->id(),
             'title' => $request->title,
             'author' => $request->author,
             'year' => $request->year

@@ -36,31 +36,31 @@ class ImportBooks extends Command
         $records = $file->getRecords();
 
         foreach ($records as $record) {
-            Book::create([
-                "book_id" => $record["book_id"],
-                "goodreads_book_id" => $record["goodreads_book_id"],
-                "best_book_id" => $record["best_book_id"],
-                "work_id" => $record["work_id"],
-                "books_count" => $record["books_count"],
-                "isbn" => $record["isbn"],
-                "isbn13" => $record["isbn13"],
+            Book::create(dump([
+                "book_id" => (int) $record["book_id"],
+                "goodreads_book_id" => (int) $record["goodreads_book_id"],
+                "best_book_id" => (int) $record["best_book_id"],
+                "work_id" => (int) $record["work_id"],
+                "books_count" => (int) $record["books_count"],
+                "isbn" => (int) $record["isbn"],
+                "isbn13" => (int) $record["isbn13"],
                 "authors" => $record["authors"],
-                "original_publication_year" => $record["original_publication_year"],
+                "original_publication_year" => (int) $record["original_publication_year"],
                 "original_title" => $record["original_title"],
                 "title" => $record["title"],
                 "language_code" => $record["language_code"],
-                "average_rating" => $record["average_rating"],
-                "ratings_count" => $record["ratings_count"],
-                "work_ratings_count" => $record["work_ratings_count"],
-                "work_text_reviews_count" => $record["work_text_reviews_count"],
-                "ratings_1" => $record["ratings_1"],
-                "ratings_2" => $record["ratings_2"],
-                "ratings_3" => $record["ratings_3"],
-                "ratings_4" => $record["ratings_4"],
-                "ratings_5" => $record["ratings_5"],
+                "average_rating" => (double) $record["average_rating"],
+                "ratings_count" => (int) $record["ratings_count"],
+                "work_ratings_count" => (int) $record["work_ratings_count"],
+                "work_text_reviews_count" => (int) $record["work_text_reviews_count"],
+                "ratings_1" => (int) $record["ratings_1"],
+                "ratings_2" => (int) $record["ratings_2"],
+                "ratings_3" => (int) $record["ratings_3"],
+                "ratings_4" => (int) $record["ratings_4"],
+                "ratings_5" => (int) $record["ratings_5"],
                 "image_url" => $record["image_url"],
                 "small_image_url" => $record["small_image_url"]
-            ]);
+            ]));
         }
     }   
 }
