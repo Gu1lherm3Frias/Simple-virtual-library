@@ -15,8 +15,8 @@
             <button><a href="\create">Adicione novo livro</a></button>
         </span>
         @foreach ($books as $book)
-            <li>Nº ISBN:{{ $book->isbn }}, Título: {{$book->title}}</li>
+            <li><a href="/{{$book->id}}">{{ $book->id }}</a>, {{$book->title}}</li>
         @endforeach
     </div>
 </body>
-</html>/
+</html>

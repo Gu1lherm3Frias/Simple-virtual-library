@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $primaryKey = "book_id";
-    public $incrementing = false;
     public $fillable = [
-        "book_id",
         "goodreads_book_id",
         "best_book_id",
         "work_id",
