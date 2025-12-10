@@ -78,15 +78,43 @@ class BookController
         return redirect('/');
     }
 
-    public function publicationByYear( int $year) {
-        return view("");
+    public function statsByYear() {
+        $booksByYear = Book::query()
+            ->selectRaw('original_publication_year as year, COUNT(*) as books_amount')
+            ->whereNotNull('original_publication_year')
+            ->where('original_publication_year', '!=', 0)
+            ->groupBy('original_publication_year')
+            ->orderBy('year')
+            ->get();
+        return view("stats_year", ['booksByYear' => $booksByYear]);
     }
     
-    public function publicationByAuthors( int $year) {
-        return view("");
+    public function statsByAuthors() {
+        $authorsCount = Book::pluck('authors')
+            ->filter()
+            ->flatMap(fn ($authors) =>
+                collect(explode(',', $authors))
+                    ->map( fn($a) => trim($a))
+                    ->filter()
+            )
+            ->countBy()
+            ->sortDesc();
+
+        return view("stats_authors", [
+            'authorsCount' => $authorsCount
+        ]);
     }
     
-    public function publicationByLanguage( int $year) {
-        return view("");
+    public function statsByLanguage() {
+        $booksByLanguage = Book::query()
+            ->selectRaw('language_code as language, COUNT(*) as books_amount')
+            ->whereNotNull('language_code')
+            ->where('language_code', '!=', '')
+            ->groupBy('language_code')
+            ->orderBy('books_amount', 'desc')
+            ->get();
+        return view("stats_language", [
+            'booksByLanguage' => $booksByLanguage
+        ]);
     }
 }

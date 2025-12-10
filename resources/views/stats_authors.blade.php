@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Publicações por autores</h1>
+    <p>{{$authorsCount}}</p>
 </body>
 </html>
