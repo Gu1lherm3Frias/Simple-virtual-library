@@ -36,7 +36,7 @@ class ImportBooks extends Command
         $records = $file->getRecords();
 
         foreach ($records as $record) {
-            Book::create(dump([
+            Book::create([
                 "goodreads_book_id" => (int) $record["goodreads_book_id"],
                 "best_book_id" => (int) $record["best_book_id"],
                 "work_id" => (int) $record["work_id"],
@@ -59,7 +59,7 @@ class ImportBooks extends Command
                 "ratings_5" => (int) $record["ratings_5"],
                 "image_url" => $record["image_url"],
                 "small_image_url" => $record["small_image_url"]
-            ]));
+            ]);
         }
     }   
 }

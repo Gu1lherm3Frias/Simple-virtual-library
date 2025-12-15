@@ -69,7 +69,7 @@ class BookController
         $book->image_url = $request->image_url;
         $book->small_image_url = $request->small_image_url;
         $book->save();
-        return redirect("/{$book->id}");
+        return redirect("/book/{$book->id}");
     }
 
     public function destroy(Book $book) {
@@ -79,13 +79,11 @@ class BookController
     }
 
     public function statsByYear() {
-        $booksByYear = Book::query()
-            ->selectRaw('original_publication_year as year, COUNT(*) as books_amount')
-            ->whereNotNull('original_publication_year')
-            ->where('original_publication_year', '!=', 0)
-            ->groupBy('original_publication_year')
-            ->orderBy('year')
-            ->get();
+        $booksByYear = Book::pluck("original_publication_year")
+            ->filter()
+            ->countBy()
+            ->sortDesc();
+        
         return view("stats_year", ['booksByYear' => $booksByYear]);
     }
     
@@ -106,13 +104,11 @@ class BookController
     }
     
     public function statsByLanguage() {
-        $booksByLanguage = Book::query()
-            ->selectRaw('language_code as language, COUNT(*) as books_amount')
-            ->whereNotNull('language_code')
-            ->where('language_code', '!=', '')
-            ->groupBy('language_code')
-            ->orderBy('books_amount', 'desc')
-            ->get();
+        $booksByLanguage = Book::pluck("language_code")
+            ->filter()
+            ->countBy()
+            ->sortDesc();
+
         return view("stats_language", [
             'booksByLanguage' => $booksByLanguage
         ]);
